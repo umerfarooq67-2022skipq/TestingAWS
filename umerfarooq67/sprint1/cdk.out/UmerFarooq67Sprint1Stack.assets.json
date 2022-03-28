@@ -1,0 +1,32 @@
+{
+  "version": "16.0.0",
+  "files": {
+    "b360ac375db10e27828d10509334ae605e546bdca2b68b03a89ed112a36bbf19": {
+      "source": {
+        "path": "asset.b360ac375db10e27828d10509334ae605e546bdca2b68b03a89ed112a36bbf19",
+        "packaging": "zip"
+      },
+      "destinations": {
+        "current_account-current_region": {
+          "bucketName": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}",
+          "objectKey": "b360ac375db10e27828d10509334ae605e546bdca2b68b03a89ed112a36bbf19.zip",
+          "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-file-publishing-role-${AWS::AccountId}-${AWS::Region}"
+        }
+      }
+    },
+    "27b127421c984c208962570d199e0ba07015633f26914a41e11572d2d94c2a50": {
+      "source": {
+        "path": "UmerFarooq67Sprint1Stack.template.json",
+        "packaging": "file"
+      },
+      "destinations": {
+        "current_account-current_region": {
+          "bucketName": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}",
+          "objectKey": "27b127421c984c208962570d199e0ba07015633f26914a41e11572d2d94c2a50.json",
+          "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-file-publishing-role-${AWS::AccountId}-${AWS::Region}"
+        }
+      }
+    }
+  },
+  "dockerImages": {}
+}
