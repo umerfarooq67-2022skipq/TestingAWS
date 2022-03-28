@@ -1,0 +1,32 @@
+{
+  "version": "16.0.0",
+  "files": {
+    "09912e48e75f20fe2c5b54ebdc55f124f135e2825b1d870864a513910a954ee3": {
+      "source": {
+        "path": "asset.09912e48e75f20fe2c5b54ebdc55f124f135e2825b1d870864a513910a954ee3",
+        "packaging": "zip"
+      },
+      "destinations": {
+        "current_account-current_region": {
+          "bucketName": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}",
+          "objectKey": "09912e48e75f20fe2c5b54ebdc55f124f135e2825b1d870864a513910a954ee3.zip",
+          "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-file-publishing-role-${AWS::AccountId}-${AWS::Region}"
+        }
+      }
+    },
+    "cf30f3e4803d2884f726f93f00f5844ecbcf945850737900ecdb2d10a3a52dc4": {
+      "source": {
+        "path": "UmerFarooq67Sprint2Stack.template.json",
+        "packaging": "file"
+      },
+      "destinations": {
+        "current_account-current_region": {
+          "bucketName": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}",
+          "objectKey": "cf30f3e4803d2884f726f93f00f5844ecbcf945850737900ecdb2d10a3a52dc4.json",
+          "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-file-publishing-role-${AWS::AccountId}-${AWS::Region}"
+        }
+      }
+    }
+  },
+  "dockerImages": {}
+}

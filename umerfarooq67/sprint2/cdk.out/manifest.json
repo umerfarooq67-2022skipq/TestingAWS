@@ -1,0 +1,101 @@
+{
+  "version": "16.0.0",
+  "artifacts": {
+    "Tree": {
+      "type": "cdk:tree",
+      "properties": {
+        "file": "tree.json"
+      }
+    },
+    "UmerFarooq67Sprint2Stack.assets": {
+      "type": "cdk:asset-manifest",
+      "properties": {
+        "file": "UmerFarooq67Sprint2Stack.assets.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+      }
+    },
+    "UmerFarooq67Sprint2Stack": {
+      "type": "aws:cloudformation:stack",
+      "environment": "aws://unknown-account/unknown-region",
+      "properties": {
+        "templateFile": "UmerFarooq67Sprint2Stack.template.json",
+        "tags": {
+          "Cohort": "Orion",
+          "Name": "Umer67"
+        },
+        "validateOnSynth": false,
+        "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-deploy-role-${AWS::AccountId}-${AWS::Region}",
+        "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-cfn-exec-role-${AWS::AccountId}-${AWS::Region}",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/cf30f3e4803d2884f726f93f00f5844ecbcf945850737900ecdb2d10a3a52dc4.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
+        "additionalDependencies": [
+          "UmerFarooq67Sprint2Stack.assets"
+        ],
+        "lookupRole": {
+          "arn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-lookup-role-${AWS::AccountId}-${AWS::Region}",
+          "requiresBootstrapStackVersion": 8,
+          "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+        }
+      },
+      "dependencies": [
+        "UmerFarooq67Sprint2Stack.assets"
+      ],
+      "metadata": {
+        "/UmerFarooq67Sprint2Stack": [
+          {
+            "type": "aws:cdk:stack-tags",
+            "data": [
+              {
+                "Key": "Cohort",
+                "Value": "Orion"
+              },
+              {
+                "Key": "Name",
+                "Value": "Umer67"
+              }
+            ]
+          }
+        ],
+        "/UmerFarooq67Sprint2Stack/UF_WH_Lambda_Function/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "UFWHLambdaFunctionServiceRole7CDE7CFD"
+          }
+        ],
+        "/UmerFarooq67Sprint2Stack/UF_WH_Lambda_Function/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "UFWHLambdaFunctionD23A1E28"
+          }
+        ],
+        "/UmerFarooq67Sprint2Stack/CDKMetadata/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadata"
+          }
+        ],
+        "/UmerFarooq67Sprint2Stack/CDKMetadata/Condition": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadataAvailable"
+          }
+        ],
+        "/UmerFarooq67Sprint2Stack/BootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BootstrapVersion"
+          }
+        ],
+        "/UmerFarooq67Sprint2Stack/CheckBootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CheckBootstrapVersion"
+          }
+        ]
+      },
+      "displayName": "UmerFarooq67Sprint2Stack"
+    }
+  }
+}
