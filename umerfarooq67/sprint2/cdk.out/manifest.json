@@ -27,7 +27,7 @@
         "validateOnSynth": false,
         "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-deploy-role-${AWS::AccountId}-${AWS::Region}",
         "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-cfn-exec-role-${AWS::AccountId}-${AWS::Region}",
-        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/d69db45b9efe21b30697acedd105c597a3c2d1fd32251df6c8d6b3d57c29cca1.json",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/75f983b87543d4719c555f6a2fc2162df96f62d48e524f89783d00d9c9b8ee6a.json",
         "requiresBootstrapStackVersion": 6,
         "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
         "additionalDependencies": [
@@ -76,22 +76,28 @@
             "data": "UFWHLambdaFunctionD23A1E28"
           }
         ],
-        "/UmerFarooq67Sprint2Stack/constants_file_bucket/Resource": [
+        "/UmerFarooq67Sprint2Stack/uf_file_bucket/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "constantsfilebucket5CC55BE8"
+            "data": "uffilebucket6D8E646A"
           }
         ],
-        "/UmerFarooq67Sprint2Stack/constants_file_bucket/Policy/Resource": [
+        "/UmerFarooq67Sprint2Stack/uf_file_bucket/Policy/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "constantsfilebucketPolicy5ECE0673"
+            "data": "uffilebucketPolicyBE408701"
           }
         ],
-        "/UmerFarooq67Sprint2Stack/constants_file_bucket/AutoDeleteObjectsCustomResource/Default": [
+        "/UmerFarooq67Sprint2Stack/uf_file_bucket/AutoDeleteObjectsCustomResource/Default": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "constantsfilebucketAutoDeleteObjectsCustomResource85569237"
+            "data": "uffilebucketAutoDeleteObjectsCustomResource1D06F9BE"
+          }
+        ],
+        "/UmerFarooq67Sprint2Stack/uf_file_bucket/Notifications/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "uffilebucketNotifications038AFA12"
           }
         ],
         "/UmerFarooq67Sprint2Stack/Custom::S3AutoDeleteObjectsCustomResourceProvider/Role": [
@@ -106,16 +112,16 @@
             "data": "CustomS3AutoDeleteObjectsCustomResourceProviderHandler9D90184F"
           }
         ],
-        "/UmerFarooq67Sprint2Stack/DeployConstantsFile/AwsCliLayer/Resource": [
+        "/UmerFarooq67Sprint2Stack/DeploySprintTwoFiles/AwsCliLayer/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "DeployConstantsFileAwsCliLayerC4D893E7"
+            "data": "DeploySprintTwoFilesAwsCliLayer7DE7C76D"
           }
         ],
-        "/UmerFarooq67Sprint2Stack/DeployConstantsFile/CustomResource/Default": [
+        "/UmerFarooq67Sprint2Stack/DeploySprintTwoFiles/CustomResource/Default": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "DeployConstantsFileCustomResource7CD59978"
+            "data": "DeploySprintTwoFilesCustomResourceB07A9C4C"
           }
         ],
         "/UmerFarooq67Sprint2Stack/Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C/ServiceRole/Resource": [
@@ -134,6 +140,42 @@
           {
             "type": "aws:cdk:logicalId",
             "data": "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C81C01536"
+          }
+        ],
+        "/UmerFarooq67Sprint2Stack/Sprint Two Bucket Topic/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SprintTwoBucketTopic99E07946"
+          }
+        ],
+        "/UmerFarooq67Sprint2Stack/Sprint Two Bucket Topic/umer.farooq67.skipq@gmail.com/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SprintTwoBucketTopicumerfarooq67skipqgmailcom1E9B0A40"
+          }
+        ],
+        "/UmerFarooq67Sprint2Stack/Sprint Two Bucket Topic/Policy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SprintTwoBucketTopicPolicyC5500C57"
+          }
+        ],
+        "/UmerFarooq67Sprint2Stack/BucketNotificationsHandler050a0587b7544547bf325f094a3db834/Role/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BucketNotificationsHandler050a0587b7544547bf325f094a3db834RoleB6FB88EC"
+          }
+        ],
+        "/UmerFarooq67Sprint2Stack/BucketNotificationsHandler050a0587b7544547bf325f094a3db834/Role/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BucketNotificationsHandler050a0587b7544547bf325f094a3db834RoleDefaultPolicy2CF63D36"
+          }
+        ],
+        "/UmerFarooq67Sprint2Stack/BucketNotificationsHandler050a0587b7544547bf325f094a3db834/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BucketNotificationsHandler050a0587b7544547bf325f094a3db8347ECC3691"
           }
         ],
         "/UmerFarooq67Sprint2Stack/UF_WH_RULE/Resource": [

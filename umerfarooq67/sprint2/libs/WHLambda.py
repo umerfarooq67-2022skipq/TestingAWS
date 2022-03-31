@@ -19,7 +19,7 @@ def lambdaHandlerWebHealth(event, context):
     '''
 
     s3 = boto3.client('s3')
-    bucket = 'umerfarooq67sprint2stack-constantsfilebucket5cc55-1sd7441f7vkyc'
+    bucket = "ufbucketsprinttwo"
     key_ = 'constants.json'
     s3_response = s3.get_object(Bucket=bucket, Key = key_)
     s3_content = s3_response['Body']
@@ -68,9 +68,6 @@ def lambdaHandlerWebHealth(event, context):
         
         
         
-    
-
-
 
 def checkAvailibility(url, http):
     '''

@@ -12,7 +12,8 @@ from aws_cdk import (
     aws_sns as sns,
     aws_sns_subscriptions as subscriptions,
     aws_s3 as s3_,
-    aws_s3_deployment as s3_deployment
+    aws_s3_deployment as s3_deployment,
+    aws_s3_notifications as s3n
     )
     
 from constructs import Construct
@@ -49,7 +50,7 @@ class Sprint2Stack(Stack):
         WH_Lambda_Hanlder.apply_removal_policy(RemovalPolicy.DESTROY)
         
         # Creating S3 bucketk.
-        bucket = self.createS3Bucket("constants_file_bucket","DeployConstantsFile")
+        bucket = self.createS3Bucket("uf_file_bucket","ufbucketsprinttwo","DeploySprintTwoFiles")
         bucket.grant_read_write(WH_Lambda_Hanlder)
         
         '''
@@ -131,10 +132,11 @@ class Sprint2Stack(Stack):
              
        
        
-    def createS3Bucket(self,_id : str, name : str):
+    def createS3Bucket(self,_id : str, bucket_name_ : str, name : str):
         bucket = s3_.Bucket(
             self, 
             _id,
+            bucket_name = bucket_name_,
             versioned = True,
             removal_policy = RemovalPolicy.DESTROY,
             auto_delete_objects = True,
@@ -148,6 +150,10 @@ class Sprint2Stack(Stack):
             destination_bucket=bucket,
             retain_on_delete = False
         )
+        
+        s3Topic = sns.Topic(self, "Sprint Two Bucket Topic")
+        s3Topic.add_subscription(subscriptions.EmailSubscription('umer.farooq67.skipq@gmail.com'))
+        bucket.add_event_notification(s3_.EventType.OBJECT_CREATED_PUT, s3n.SnsDestination(s3Topic))
         
         return bucket
         
