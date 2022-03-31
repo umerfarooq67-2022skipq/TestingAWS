@@ -27,7 +27,7 @@
         "validateOnSynth": false,
         "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-deploy-role-${AWS::AccountId}-${AWS::Region}",
         "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-cfn-exec-role-${AWS::AccountId}-${AWS::Region}",
-        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/cf30f3e4803d2884f726f93f00f5844ecbcf945850737900ecdb2d10a3a52dc4.json",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/d69db45b9efe21b30697acedd105c597a3c2d1fd32251df6c8d6b3d57c29cca1.json",
         "requiresBootstrapStackVersion": 6,
         "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
         "additionalDependencies": [
@@ -58,16 +58,214 @@
             ]
           }
         ],
-        "/UmerFarooq67Sprint2Stack/UF_WH_Lambda_Function/ServiceRole/Resource": [
+        "/UmerFarooq67Sprint2Stack/UF67_CW_ROLE/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "UFWHLambdaFunctionServiceRole7CDE7CFD"
+            "data": "UF67CWROLEC3D2C3AC"
+          }
+        ],
+        "/UmerFarooq67Sprint2Stack/UF67_CW_ROLE/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "UF67CWROLEDefaultPolicyA1F2CE53"
           }
         ],
         "/UmerFarooq67Sprint2Stack/UF_WH_Lambda_Function/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "UFWHLambdaFunctionD23A1E28"
+          }
+        ],
+        "/UmerFarooq67Sprint2Stack/constants_file_bucket/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "constantsfilebucket5CC55BE8"
+          }
+        ],
+        "/UmerFarooq67Sprint2Stack/constants_file_bucket/Policy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "constantsfilebucketPolicy5ECE0673"
+          }
+        ],
+        "/UmerFarooq67Sprint2Stack/constants_file_bucket/AutoDeleteObjectsCustomResource/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "constantsfilebucketAutoDeleteObjectsCustomResource85569237"
+          }
+        ],
+        "/UmerFarooq67Sprint2Stack/Custom::S3AutoDeleteObjectsCustomResourceProvider/Role": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092"
+          }
+        ],
+        "/UmerFarooq67Sprint2Stack/Custom::S3AutoDeleteObjectsCustomResourceProvider/Handler": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CustomS3AutoDeleteObjectsCustomResourceProviderHandler9D90184F"
+          }
+        ],
+        "/UmerFarooq67Sprint2Stack/DeployConstantsFile/AwsCliLayer/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DeployConstantsFileAwsCliLayerC4D893E7"
+          }
+        ],
+        "/UmerFarooq67Sprint2Stack/DeployConstantsFile/CustomResource/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DeployConstantsFileCustomResource7CD59978"
+          }
+        ],
+        "/UmerFarooq67Sprint2Stack/Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756CServiceRole89A01265"
+          }
+        ],
+        "/UmerFarooq67Sprint2Stack/Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756CServiceRoleDefaultPolicy88902FDF"
+          }
+        ],
+        "/UmerFarooq67Sprint2Stack/Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C81C01536"
+          }
+        ],
+        "/UmerFarooq67Sprint2Stack/UF_WH_RULE/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "UFWHRULE0E24ACC0"
+          }
+        ],
+        "/UmerFarooq67Sprint2Stack/UF_WH_RULE/AllowEventRuleUmerFarooq67Sprint2StackUFWHLambdaFunction1BB815EE": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "UFWHRULEAllowEventRuleUmerFarooq67Sprint2StackUFWHLambdaFunction1BB815EE04742C09"
+          }
+        ],
+        "/UmerFarooq67Sprint2Stack/Topic Availability/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TopicAvailability2EA50E35"
+          }
+        ],
+        "/UmerFarooq67Sprint2Stack/Topic Latency/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TopicLatencyC2BBEF34"
+          }
+        ],
+        "/UmerFarooq67Sprint2Stack/skipq Topic Availability/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "skipqTopicAvailability2C0A56C0"
+          }
+        ],
+        "/UmerFarooq67Sprint2Stack/skipq Topic Availability/umer.farooq67.skipq@gmail.com/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "skipqTopicAvailabilityumerfarooq67skipqgmailcom27D07AAB"
+          }
+        ],
+        "/UmerFarooq67Sprint2Stack/skipq Topic Latency/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "skipqTopicLatency8FC17F9A"
+          }
+        ],
+        "/UmerFarooq67Sprint2Stack/skipq Topic Latency/umer.farooq67.skipq@gmail.com/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "skipqTopicLatencyumerfarooq67skipqgmailcomFA9C390E"
+          }
+        ],
+        "/UmerFarooq67Sprint2Stack/skipq_alarm_availability/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "skipqalarmavailabilityAE7E8870"
+          }
+        ],
+        "/UmerFarooq67Sprint2Stack/skipq_alarm_latency/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "skipqalarmlatency3A570832"
+          }
+        ],
+        "/UmerFarooq67Sprint2Stack/google Topic Availability/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "googleTopicAvailability63A480D8"
+          }
+        ],
+        "/UmerFarooq67Sprint2Stack/google Topic Availability/umer.farooq67.skipq@gmail.com/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "googleTopicAvailabilityumerfarooq67skipqgmailcom3538E5BA"
+          }
+        ],
+        "/UmerFarooq67Sprint2Stack/google Topic Latency/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "googleTopicLatency0DF40A82"
+          }
+        ],
+        "/UmerFarooq67Sprint2Stack/google Topic Latency/umer.farooq67.skipq@gmail.com/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "googleTopicLatencyumerfarooq67skipqgmailcom9D0B5B77"
+          }
+        ],
+        "/UmerFarooq67Sprint2Stack/google_alarm_availability/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "googlealarmavailability33A43B9F"
+          }
+        ],
+        "/UmerFarooq67Sprint2Stack/google_alarm_latency/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "googlealarmlatencyEC7B5818"
+          }
+        ],
+        "/UmerFarooq67Sprint2Stack/namal Topic Availability/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "namalTopicAvailability2D72BAE4"
+          }
+        ],
+        "/UmerFarooq67Sprint2Stack/namal Topic Availability/umer.farooq67.skipq@gmail.com/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "namalTopicAvailabilityumerfarooq67skipqgmailcomD365EF21"
+          }
+        ],
+        "/UmerFarooq67Sprint2Stack/namal Topic Latency/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "namalTopicLatencyDAB6BC4A"
+          }
+        ],
+        "/UmerFarooq67Sprint2Stack/namal Topic Latency/umer.farooq67.skipq@gmail.com/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "namalTopicLatencyumerfarooq67skipqgmailcom589D613D"
+          }
+        ],
+        "/UmerFarooq67Sprint2Stack/namal_alarm_availability/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "namalalarmavailabilityAFC2C534"
+          }
+        ],
+        "/UmerFarooq67Sprint2Stack/namal_alarm_latency/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "namalalarmlatency40ADFB12"
           }
         ],
         "/UmerFarooq67Sprint2Stack/CDKMetadata/Default": [

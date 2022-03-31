@@ -16,17 +16,525 @@
         "id": "UmerFarooq67Sprint2Stack",
         "path": "UmerFarooq67Sprint2Stack",
         "children": {
+          "UF67_CW_ROLE": {
+            "id": "UF67_CW_ROLE",
+            "path": "UmerFarooq67Sprint2Stack/UF67_CW_ROLE",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "UmerFarooq67Sprint2Stack/UF67_CW_ROLE/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::IAM::Role",
+                  "aws:cdk:cloudformation:props": {
+                    "assumeRolePolicyDocument": {
+                      "Statement": [
+                        {
+                          "Action": "sts:AssumeRole",
+                          "Effect": "Allow",
+                          "Principal": {
+                            "Service": "lambda.amazonaws.com"
+                          }
+                        }
+                      ],
+                      "Version": "2012-10-17"
+                    },
+                    "managedPolicyArns": [
+                      {
+                        "Fn::Join": [
+                          "",
+                          [
+                            "arn:",
+                            {
+                              "Ref": "AWS::Partition"
+                            },
+                            ":iam::aws:policy/CloudWatchFullAccess"
+                          ]
+                        ]
+                      }
+                    ],
+                    "roleName": "CLOUD_WATCH_FULL_ACCESS",
+                    "tags": [
+                      {
+                        "key": "Cohort",
+                        "value": "Orion"
+                      },
+                      {
+                        "key": "Name",
+                        "value": "Umer67"
+                      }
+                    ]
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_iam.CfnRole",
+                  "version": "2.16.0"
+                }
+              },
+              "DefaultPolicy": {
+                "id": "DefaultPolicy",
+                "path": "UmerFarooq67Sprint2Stack/UF67_CW_ROLE/DefaultPolicy",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "UmerFarooq67Sprint2Stack/UF67_CW_ROLE/DefaultPolicy/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
+                      "aws:cdk:cloudformation:props": {
+                        "policyDocument": {
+                          "Statement": [
+                            {
+                              "Action": [
+                                "s3:GetObject*",
+                                "s3:GetBucket*",
+                                "s3:List*",
+                                "s3:DeleteObject*",
+                                "s3:PutObject",
+                                "s3:PutObjectLegalHold",
+                                "s3:PutObjectRetention",
+                                "s3:PutObjectTagging",
+                                "s3:PutObjectVersionTagging",
+                                "s3:Abort*"
+                              ],
+                              "Effect": "Allow",
+                              "Resource": [
+                                {
+                                  "Fn::GetAtt": [
+                                    "constantsfilebucket5CC55BE8",
+                                    "Arn"
+                                  ]
+                                },
+                                {
+                                  "Fn::Join": [
+                                    "",
+                                    [
+                                      {
+                                        "Fn::GetAtt": [
+                                          "constantsfilebucket5CC55BE8",
+                                          "Arn"
+                                        ]
+                                      },
+                                      "/*"
+                                    ]
+                                  ]
+                                }
+                              ]
+                            }
+                          ],
+                          "Version": "2012-10-17"
+                        },
+                        "policyName": "UF67CWROLEDefaultPolicyA1F2CE53",
+                        "roles": [
+                          {
+                            "Ref": "UF67CWROLEC3D2C3AC"
+                          }
+                        ]
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_iam.CfnPolicy",
+                      "version": "2.16.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_iam.Policy",
+                  "version": "2.16.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_iam.Role",
+              "version": "2.16.0"
+            }
+          },
           "UF_WH_Lambda_Function": {
             "id": "UF_WH_Lambda_Function",
             "path": "UmerFarooq67Sprint2Stack/UF_WH_Lambda_Function",
             "children": {
-              "ServiceRole": {
-                "id": "ServiceRole",
-                "path": "UmerFarooq67Sprint2Stack/UF_WH_Lambda_Function/ServiceRole",
+              "Code": {
+                "id": "Code",
+                "path": "UmerFarooq67Sprint2Stack/UF_WH_Lambda_Function/Code",
+                "children": {
+                  "Stage": {
+                    "id": "Stage",
+                    "path": "UmerFarooq67Sprint2Stack/UF_WH_Lambda_Function/Code/Stage",
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.AssetStaging",
+                      "version": "2.16.0"
+                    }
+                  },
+                  "AssetBucket": {
+                    "id": "AssetBucket",
+                    "path": "UmerFarooq67Sprint2Stack/UF_WH_Lambda_Function/Code/AssetBucket",
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_s3.BucketBase",
+                      "version": "2.16.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_s3_assets.Asset",
+                  "version": "2.16.0"
+                }
+              },
+              "Resource": {
+                "id": "Resource",
+                "path": "UmerFarooq67Sprint2Stack/UF_WH_Lambda_Function/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::Lambda::Function",
+                  "aws:cdk:cloudformation:props": {
+                    "code": {
+                      "s3Bucket": {
+                        "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
+                      },
+                      "s3Key": "d91be32b1eea726e29c1bd7b0fd8800918c60fb64b0f10b3554bd4af82bccb9b.zip"
+                    },
+                    "role": {
+                      "Fn::GetAtt": [
+                        "UF67CWROLEC3D2C3AC",
+                        "Arn"
+                      ]
+                    },
+                    "handler": "WHLambda.lambdaHandlerWebHealth",
+                    "runtime": "python3.7",
+                    "tags": [
+                      {
+                        "key": "Cohort",
+                        "value": "Orion"
+                      },
+                      {
+                        "key": "Name",
+                        "value": "Umer67"
+                      }
+                    ]
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_lambda.CfnFunction",
+                  "version": "2.16.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_lambda.Function",
+              "version": "2.16.0"
+            }
+          },
+          "constants_file_bucket": {
+            "id": "constants_file_bucket",
+            "path": "UmerFarooq67Sprint2Stack/constants_file_bucket",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "UmerFarooq67Sprint2Stack/constants_file_bucket/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::S3::Bucket",
+                  "aws:cdk:cloudformation:props": {
+                    "tags": [
+                      {
+                        "key": "aws-cdk:auto-delete-objects",
+                        "value": "true"
+                      },
+                      {
+                        "key": "aws-cdk:cr-owned:13e8b2d8",
+                        "value": "true"
+                      },
+                      {
+                        "key": "Cohort",
+                        "value": "Orion"
+                      },
+                      {
+                        "key": "Name",
+                        "value": "Umer67"
+                      }
+                    ],
+                    "versioningConfiguration": {
+                      "status": "Enabled"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_s3.CfnBucket",
+                  "version": "2.16.0"
+                }
+              },
+              "Policy": {
+                "id": "Policy",
+                "path": "UmerFarooq67Sprint2Stack/constants_file_bucket/Policy",
                 "children": {
                   "Resource": {
                     "id": "Resource",
-                    "path": "UmerFarooq67Sprint2Stack/UF_WH_Lambda_Function/ServiceRole/Resource",
+                    "path": "UmerFarooq67Sprint2Stack/constants_file_bucket/Policy/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::S3::BucketPolicy",
+                      "aws:cdk:cloudformation:props": {
+                        "bucket": {
+                          "Ref": "constantsfilebucket5CC55BE8"
+                        },
+                        "policyDocument": {
+                          "Statement": [
+                            {
+                              "Action": "s3:GetObject",
+                              "Effect": "Allow",
+                              "Principal": {
+                                "AWS": "*"
+                              },
+                              "Resource": {
+                                "Fn::Join": [
+                                  "",
+                                  [
+                                    {
+                                      "Fn::GetAtt": [
+                                        "constantsfilebucket5CC55BE8",
+                                        "Arn"
+                                      ]
+                                    },
+                                    "/*"
+                                  ]
+                                ]
+                              }
+                            },
+                            {
+                              "Action": [
+                                "s3:GetBucket*",
+                                "s3:List*",
+                                "s3:DeleteObject*"
+                              ],
+                              "Effect": "Allow",
+                              "Principal": {
+                                "AWS": {
+                                  "Fn::GetAtt": [
+                                    "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092",
+                                    "Arn"
+                                  ]
+                                }
+                              },
+                              "Resource": [
+                                {
+                                  "Fn::GetAtt": [
+                                    "constantsfilebucket5CC55BE8",
+                                    "Arn"
+                                  ]
+                                },
+                                {
+                                  "Fn::Join": [
+                                    "",
+                                    [
+                                      {
+                                        "Fn::GetAtt": [
+                                          "constantsfilebucket5CC55BE8",
+                                          "Arn"
+                                        ]
+                                      },
+                                      "/*"
+                                    ]
+                                  ]
+                                }
+                              ]
+                            }
+                          ],
+                          "Version": "2012-10-17"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_s3.CfnBucketPolicy",
+                      "version": "2.16.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_s3.BucketPolicy",
+                  "version": "2.16.0"
+                }
+              },
+              "AutoDeleteObjectsCustomResource": {
+                "id": "AutoDeleteObjectsCustomResource",
+                "path": "UmerFarooq67Sprint2Stack/constants_file_bucket/AutoDeleteObjectsCustomResource",
+                "children": {
+                  "Default": {
+                    "id": "Default",
+                    "path": "UmerFarooq67Sprint2Stack/constants_file_bucket/AutoDeleteObjectsCustomResource/Default",
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.CfnResource",
+                      "version": "2.16.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CustomResource",
+                  "version": "2.16.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_s3.Bucket",
+              "version": "2.16.0"
+            }
+          },
+          "Custom::S3AutoDeleteObjectsCustomResourceProvider": {
+            "id": "Custom::S3AutoDeleteObjectsCustomResourceProvider",
+            "path": "UmerFarooq67Sprint2Stack/Custom::S3AutoDeleteObjectsCustomResourceProvider",
+            "children": {
+              "Staging": {
+                "id": "Staging",
+                "path": "UmerFarooq67Sprint2Stack/Custom::S3AutoDeleteObjectsCustomResourceProvider/Staging",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.AssetStaging",
+                  "version": "2.16.0"
+                }
+              },
+              "Role": {
+                "id": "Role",
+                "path": "UmerFarooq67Sprint2Stack/Custom::S3AutoDeleteObjectsCustomResourceProvider/Role",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnResource",
+                  "version": "2.16.0"
+                }
+              },
+              "Handler": {
+                "id": "Handler",
+                "path": "UmerFarooq67Sprint2Stack/Custom::S3AutoDeleteObjectsCustomResourceProvider/Handler",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnResource",
+                  "version": "2.16.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.CustomResourceProvider",
+              "version": "2.16.0"
+            }
+          },
+          "DeployConstantsFile": {
+            "id": "DeployConstantsFile",
+            "path": "UmerFarooq67Sprint2Stack/DeployConstantsFile",
+            "children": {
+              "AwsCliLayer": {
+                "id": "AwsCliLayer",
+                "path": "UmerFarooq67Sprint2Stack/DeployConstantsFile/AwsCliLayer",
+                "children": {
+                  "Code": {
+                    "id": "Code",
+                    "path": "UmerFarooq67Sprint2Stack/DeployConstantsFile/AwsCliLayer/Code",
+                    "children": {
+                      "Stage": {
+                        "id": "Stage",
+                        "path": "UmerFarooq67Sprint2Stack/DeployConstantsFile/AwsCliLayer/Code/Stage",
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.AssetStaging",
+                          "version": "2.16.0"
+                        }
+                      },
+                      "AssetBucket": {
+                        "id": "AssetBucket",
+                        "path": "UmerFarooq67Sprint2Stack/DeployConstantsFile/AwsCliLayer/Code/AssetBucket",
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.aws_s3.BucketBase",
+                          "version": "2.16.0"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_s3_assets.Asset",
+                      "version": "2.16.0"
+                    }
+                  },
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "UmerFarooq67Sprint2Stack/DeployConstantsFile/AwsCliLayer/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::Lambda::LayerVersion",
+                      "aws:cdk:cloudformation:props": {
+                        "content": {
+                          "s3Bucket": {
+                            "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
+                          },
+                          "s3Key": "61f3b82f5fe3b135f58644b9bb25da9af6d46345bbe50c3d935682beae71ef17.zip"
+                        },
+                        "description": "/opt/awscli/aws"
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_lambda.CfnLayerVersion",
+                      "version": "2.16.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.lambda_layer_awscli.AwsCliLayer",
+                  "version": "2.16.0"
+                }
+              },
+              "CustomResourceHandler": {
+                "id": "CustomResourceHandler",
+                "path": "UmerFarooq67Sprint2Stack/DeployConstantsFile/CustomResourceHandler",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_lambda.SingletonFunction",
+                  "version": "2.16.0"
+                }
+              },
+              "Asset1": {
+                "id": "Asset1",
+                "path": "UmerFarooq67Sprint2Stack/DeployConstantsFile/Asset1",
+                "children": {
+                  "Stage": {
+                    "id": "Stage",
+                    "path": "UmerFarooq67Sprint2Stack/DeployConstantsFile/Asset1/Stage",
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.AssetStaging",
+                      "version": "2.16.0"
+                    }
+                  },
+                  "AssetBucket": {
+                    "id": "AssetBucket",
+                    "path": "UmerFarooq67Sprint2Stack/DeployConstantsFile/Asset1/AssetBucket",
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_s3.BucketBase",
+                      "version": "2.16.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_s3_assets.Asset",
+                  "version": "2.16.0"
+                }
+              },
+              "CustomResource": {
+                "id": "CustomResource",
+                "path": "UmerFarooq67Sprint2Stack/DeployConstantsFile/CustomResource",
+                "children": {
+                  "Default": {
+                    "id": "Default",
+                    "path": "UmerFarooq67Sprint2Stack/DeployConstantsFile/CustomResource/Default",
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.CfnResource",
+                      "version": "2.16.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CustomResource",
+                  "version": "2.16.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_s3_deployment.BucketDeployment",
+              "version": "2.16.0"
+            }
+          },
+          "Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C": {
+            "id": "Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C",
+            "path": "UmerFarooq67Sprint2Stack/Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C",
+            "children": {
+              "ServiceRole": {
+                "id": "ServiceRole",
+                "path": "UmerFarooq67Sprint2Stack/Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C/ServiceRole",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "UmerFarooq67Sprint2Stack/Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C/ServiceRole/Resource",
                     "attributes": {
                       "aws:cdk:cloudformation:type": "AWS::IAM::Role",
                       "aws:cdk:cloudformation:props": {
@@ -72,6 +580,118 @@
                       "fqn": "aws-cdk-lib.aws_iam.CfnRole",
                       "version": "2.16.0"
                     }
+                  },
+                  "DefaultPolicy": {
+                    "id": "DefaultPolicy",
+                    "path": "UmerFarooq67Sprint2Stack/Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C/ServiceRole/DefaultPolicy",
+                    "children": {
+                      "Resource": {
+                        "id": "Resource",
+                        "path": "UmerFarooq67Sprint2Stack/Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C/ServiceRole/DefaultPolicy/Resource",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
+                          "aws:cdk:cloudformation:props": {
+                            "policyDocument": {
+                              "Statement": [
+                                {
+                                  "Action": [
+                                    "s3:GetObject*",
+                                    "s3:GetBucket*",
+                                    "s3:List*"
+                                  ],
+                                  "Effect": "Allow",
+                                  "Resource": [
+                                    {
+                                      "Fn::Join": [
+                                        "",
+                                        [
+                                          "arn:",
+                                          {
+                                            "Ref": "AWS::Partition"
+                                          },
+                                          ":s3:::",
+                                          {
+                                            "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
+                                          }
+                                        ]
+                                      ]
+                                    },
+                                    {
+                                      "Fn::Join": [
+                                        "",
+                                        [
+                                          "arn:",
+                                          {
+                                            "Ref": "AWS::Partition"
+                                          },
+                                          ":s3:::",
+                                          {
+                                            "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
+                                          },
+                                          "/*"
+                                        ]
+                                      ]
+                                    }
+                                  ]
+                                },
+                                {
+                                  "Action": [
+                                    "s3:GetObject*",
+                                    "s3:GetBucket*",
+                                    "s3:List*",
+                                    "s3:DeleteObject*",
+                                    "s3:PutObject",
+                                    "s3:PutObjectLegalHold",
+                                    "s3:PutObjectRetention",
+                                    "s3:PutObjectTagging",
+                                    "s3:PutObjectVersionTagging",
+                                    "s3:Abort*"
+                                  ],
+                                  "Effect": "Allow",
+                                  "Resource": [
+                                    {
+                                      "Fn::GetAtt": [
+                                        "constantsfilebucket5CC55BE8",
+                                        "Arn"
+                                      ]
+                                    },
+                                    {
+                                      "Fn::Join": [
+                                        "",
+                                        [
+                                          {
+                                            "Fn::GetAtt": [
+                                              "constantsfilebucket5CC55BE8",
+                                              "Arn"
+                                            ]
+                                          },
+                                          "/*"
+                                        ]
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ],
+                              "Version": "2012-10-17"
+                            },
+                            "policyName": "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756CServiceRoleDefaultPolicy88902FDF",
+                            "roles": [
+                              {
+                                "Ref": "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756CServiceRole89A01265"
+                              }
+                            ]
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.aws_iam.CfnPolicy",
+                          "version": "2.16.0"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_iam.Policy",
+                      "version": "2.16.0"
+                    }
                   }
                 },
                 "constructInfo": {
@@ -81,11 +701,11 @@
               },
               "Code": {
                 "id": "Code",
-                "path": "UmerFarooq67Sprint2Stack/UF_WH_Lambda_Function/Code",
+                "path": "UmerFarooq67Sprint2Stack/Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C/Code",
                 "children": {
                   "Stage": {
                     "id": "Stage",
-                    "path": "UmerFarooq67Sprint2Stack/UF_WH_Lambda_Function/Code/Stage",
+                    "path": "UmerFarooq67Sprint2Stack/Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C/Code/Stage",
                     "constructInfo": {
                       "fqn": "aws-cdk-lib.AssetStaging",
                       "version": "2.16.0"
@@ -93,7 +713,7 @@
                   },
                   "AssetBucket": {
                     "id": "AssetBucket",
-                    "path": "UmerFarooq67Sprint2Stack/UF_WH_Lambda_Function/Code/AssetBucket",
+                    "path": "UmerFarooq67Sprint2Stack/Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C/Code/AssetBucket",
                     "constructInfo": {
                       "fqn": "aws-cdk-lib.aws_s3.BucketBase",
                       "version": "2.16.0"
@@ -107,7 +727,7 @@
               },
               "Resource": {
                 "id": "Resource",
-                "path": "UmerFarooq67Sprint2Stack/UF_WH_Lambda_Function/Resource",
+                "path": "UmerFarooq67Sprint2Stack/Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C/Resource",
                 "attributes": {
                   "aws:cdk:cloudformation:type": "AWS::Lambda::Function",
                   "aws:cdk:cloudformation:props": {
@@ -115,16 +735,119 @@
                       "s3Bucket": {
                         "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
                       },
-                      "s3Key": "09912e48e75f20fe2c5b54ebdc55f124f135e2825b1d870864a513910a954ee3.zip"
+                      "s3Key": "f98b78092dcdd31f5e6d47489beb5f804d4835ef86a8085d0a2053cb9ae711da.zip"
                     },
                     "role": {
                       "Fn::GetAtt": [
-                        "UFWHLambdaFunctionServiceRole7CDE7CFD",
+                        "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756CServiceRole89A01265",
                         "Arn"
                       ]
                     },
-                    "handler": "WHLambda.lambdaHandlerWebHealth",
+                    "handler": "index.handler",
+                    "layers": [
+                      {
+                        "Ref": "DeployConstantsFileAwsCliLayerC4D893E7"
+                      }
+                    ],
                     "runtime": "python3.7",
+                    "tags": [
+                      {
+                        "key": "Cohort",
+                        "value": "Orion"
+                      },
+                      {
+                        "key": "Name",
+                        "value": "Umer67"
+                      }
+                    ],
+                    "timeout": 900
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_lambda.CfnFunction",
+                  "version": "2.16.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_lambda.Function",
+              "version": "2.16.0"
+            }
+          },
+          "UF_WH_RULE": {
+            "id": "UF_WH_RULE",
+            "path": "UmerFarooq67Sprint2Stack/UF_WH_RULE",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "UmerFarooq67Sprint2Stack/UF_WH_RULE/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::Events::Rule",
+                  "aws:cdk:cloudformation:props": {
+                    "description": "This is event rule to trigger lambda function every 1 min.",
+                    "scheduleExpression": "rate(1 minute)",
+                    "state": "ENABLED",
+                    "targets": [
+                      {
+                        "id": "Target0",
+                        "arn": {
+                          "Fn::GetAtt": [
+                            "UFWHLambdaFunctionD23A1E28",
+                            "Arn"
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_events.CfnRule",
+                  "version": "2.16.0"
+                }
+              },
+              "AllowEventRuleUmerFarooq67Sprint2StackUFWHLambdaFunction1BB815EE": {
+                "id": "AllowEventRuleUmerFarooq67Sprint2StackUFWHLambdaFunction1BB815EE",
+                "path": "UmerFarooq67Sprint2Stack/UF_WH_RULE/AllowEventRuleUmerFarooq67Sprint2StackUFWHLambdaFunction1BB815EE",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::Lambda::Permission",
+                  "aws:cdk:cloudformation:props": {
+                    "action": "lambda:InvokeFunction",
+                    "functionName": {
+                      "Fn::GetAtt": [
+                        "UFWHLambdaFunctionD23A1E28",
+                        "Arn"
+                      ]
+                    },
+                    "principal": "events.amazonaws.com",
+                    "sourceArn": {
+                      "Fn::GetAtt": [
+                        "UFWHRULE0E24ACC0",
+                        "Arn"
+                      ]
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_lambda.CfnPermission",
+                  "version": "2.16.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_events.Rule",
+              "version": "2.16.0"
+            }
+          },
+          "Topic Availability": {
+            "id": "Topic Availability",
+            "path": "UmerFarooq67Sprint2Stack/Topic Availability",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "UmerFarooq67Sprint2Stack/Topic Availability/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::SNS::Topic",
+                  "aws:cdk:cloudformation:props": {
                     "tags": [
                       {
                         "key": "Cohort",
@@ -138,13 +861,730 @@
                   }
                 },
                 "constructInfo": {
-                  "fqn": "aws-cdk-lib.aws_lambda.CfnFunction",
+                  "fqn": "aws-cdk-lib.aws_sns.CfnTopic",
                   "version": "2.16.0"
                 }
               }
             },
             "constructInfo": {
-              "fqn": "aws-cdk-lib.aws_lambda.Function",
+              "fqn": "aws-cdk-lib.aws_sns.Topic",
+              "version": "2.16.0"
+            }
+          },
+          "Topic Latency": {
+            "id": "Topic Latency",
+            "path": "UmerFarooq67Sprint2Stack/Topic Latency",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "UmerFarooq67Sprint2Stack/Topic Latency/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::SNS::Topic",
+                  "aws:cdk:cloudformation:props": {
+                    "tags": [
+                      {
+                        "key": "Cohort",
+                        "value": "Orion"
+                      },
+                      {
+                        "key": "Name",
+                        "value": "Umer67"
+                      }
+                    ]
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_sns.CfnTopic",
+                  "version": "2.16.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_sns.Topic",
+              "version": "2.16.0"
+            }
+          },
+          "skipq Topic Availability": {
+            "id": "skipq Topic Availability",
+            "path": "UmerFarooq67Sprint2Stack/skipq Topic Availability",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "UmerFarooq67Sprint2Stack/skipq Topic Availability/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::SNS::Topic",
+                  "aws:cdk:cloudformation:props": {
+                    "tags": [
+                      {
+                        "key": "Cohort",
+                        "value": "Orion"
+                      },
+                      {
+                        "key": "Name",
+                        "value": "Umer67"
+                      }
+                    ]
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_sns.CfnTopic",
+                  "version": "2.16.0"
+                }
+              },
+              "umer.farooq67.skipq@gmail.com": {
+                "id": "umer.farooq67.skipq@gmail.com",
+                "path": "UmerFarooq67Sprint2Stack/skipq Topic Availability/umer.farooq67.skipq@gmail.com",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "UmerFarooq67Sprint2Stack/skipq Topic Availability/umer.farooq67.skipq@gmail.com/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::SNS::Subscription",
+                      "aws:cdk:cloudformation:props": {
+                        "protocol": "email",
+                        "topicArn": {
+                          "Ref": "skipqTopicAvailability2C0A56C0"
+                        },
+                        "endpoint": "umer.farooq67.skipq@gmail.com"
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_sns.CfnSubscription",
+                      "version": "2.16.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_sns.Subscription",
+                  "version": "2.16.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_sns.Topic",
+              "version": "2.16.0"
+            }
+          },
+          "skipq Topic Latency": {
+            "id": "skipq Topic Latency",
+            "path": "UmerFarooq67Sprint2Stack/skipq Topic Latency",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "UmerFarooq67Sprint2Stack/skipq Topic Latency/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::SNS::Topic",
+                  "aws:cdk:cloudformation:props": {
+                    "tags": [
+                      {
+                        "key": "Cohort",
+                        "value": "Orion"
+                      },
+                      {
+                        "key": "Name",
+                        "value": "Umer67"
+                      }
+                    ]
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_sns.CfnTopic",
+                  "version": "2.16.0"
+                }
+              },
+              "umer.farooq67.skipq@gmail.com": {
+                "id": "umer.farooq67.skipq@gmail.com",
+                "path": "UmerFarooq67Sprint2Stack/skipq Topic Latency/umer.farooq67.skipq@gmail.com",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "UmerFarooq67Sprint2Stack/skipq Topic Latency/umer.farooq67.skipq@gmail.com/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::SNS::Subscription",
+                      "aws:cdk:cloudformation:props": {
+                        "protocol": "email",
+                        "topicArn": {
+                          "Ref": "skipqTopicLatency8FC17F9A"
+                        },
+                        "endpoint": "umer.farooq67.skipq@gmail.com"
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_sns.CfnSubscription",
+                      "version": "2.16.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_sns.Subscription",
+                  "version": "2.16.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_sns.Topic",
+              "version": "2.16.0"
+            }
+          },
+          "skipq_alarm_availability": {
+            "id": "skipq_alarm_availability",
+            "path": "UmerFarooq67Sprint2Stack/skipq_alarm_availability",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "UmerFarooq67Sprint2Stack/skipq_alarm_availability/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::CloudWatch::Alarm",
+                  "aws:cdk:cloudformation:props": {
+                    "comparisonOperator": "LessThanThreshold",
+                    "evaluationPeriods": 1,
+                    "alarmActions": [
+                      {
+                        "Ref": "skipqTopicAvailability2C0A56C0"
+                      }
+                    ],
+                    "datapointsToAlarm": 1,
+                    "metrics": [
+                      {
+                        "metricStat": {
+                          "metric": {
+                            "metricName": "availability",
+                            "namespace": "UF67NameSPACE",
+                            "dimensions": [
+                              {
+                                "name": "url",
+                                "value": "www.skipq.org"
+                              }
+                            ]
+                          },
+                          "period": 60,
+                          "stat": "Average"
+                        },
+                        "id": "m1",
+                        "label": "Availability Metric",
+                        "returnData": true
+                      }
+                    ],
+                    "threshold": 1
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_cloudwatch.CfnAlarm",
+                  "version": "2.16.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_cloudwatch.Alarm",
+              "version": "2.16.0"
+            }
+          },
+          "skipq_alarm_latency": {
+            "id": "skipq_alarm_latency",
+            "path": "UmerFarooq67Sprint2Stack/skipq_alarm_latency",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "UmerFarooq67Sprint2Stack/skipq_alarm_latency/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::CloudWatch::Alarm",
+                  "aws:cdk:cloudformation:props": {
+                    "comparisonOperator": "GreaterThanThreshold",
+                    "evaluationPeriods": 1,
+                    "alarmActions": [
+                      {
+                        "Ref": "skipqTopicLatency8FC17F9A"
+                      }
+                    ],
+                    "datapointsToAlarm": 1,
+                    "metrics": [
+                      {
+                        "metricStat": {
+                          "metric": {
+                            "metricName": "latency",
+                            "namespace": "UF67NameSPACE",
+                            "dimensions": [
+                              {
+                                "name": "url",
+                                "value": "www.skipq.org"
+                              }
+                            ]
+                          },
+                          "period": 60,
+                          "stat": "Average"
+                        },
+                        "id": "m1",
+                        "label": "Latency Metric",
+                        "returnData": true
+                      }
+                    ],
+                    "threshold": 0.02
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_cloudwatch.CfnAlarm",
+                  "version": "2.16.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_cloudwatch.Alarm",
+              "version": "2.16.0"
+            }
+          },
+          "google Topic Availability": {
+            "id": "google Topic Availability",
+            "path": "UmerFarooq67Sprint2Stack/google Topic Availability",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "UmerFarooq67Sprint2Stack/google Topic Availability/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::SNS::Topic",
+                  "aws:cdk:cloudformation:props": {
+                    "tags": [
+                      {
+                        "key": "Cohort",
+                        "value": "Orion"
+                      },
+                      {
+                        "key": "Name",
+                        "value": "Umer67"
+                      }
+                    ]
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_sns.CfnTopic",
+                  "version": "2.16.0"
+                }
+              },
+              "umer.farooq67.skipq@gmail.com": {
+                "id": "umer.farooq67.skipq@gmail.com",
+                "path": "UmerFarooq67Sprint2Stack/google Topic Availability/umer.farooq67.skipq@gmail.com",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "UmerFarooq67Sprint2Stack/google Topic Availability/umer.farooq67.skipq@gmail.com/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::SNS::Subscription",
+                      "aws:cdk:cloudformation:props": {
+                        "protocol": "email",
+                        "topicArn": {
+                          "Ref": "googleTopicAvailability63A480D8"
+                        },
+                        "endpoint": "umer.farooq67.skipq@gmail.com"
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_sns.CfnSubscription",
+                      "version": "2.16.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_sns.Subscription",
+                  "version": "2.16.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_sns.Topic",
+              "version": "2.16.0"
+            }
+          },
+          "google Topic Latency": {
+            "id": "google Topic Latency",
+            "path": "UmerFarooq67Sprint2Stack/google Topic Latency",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "UmerFarooq67Sprint2Stack/google Topic Latency/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::SNS::Topic",
+                  "aws:cdk:cloudformation:props": {
+                    "tags": [
+                      {
+                        "key": "Cohort",
+                        "value": "Orion"
+                      },
+                      {
+                        "key": "Name",
+                        "value": "Umer67"
+                      }
+                    ]
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_sns.CfnTopic",
+                  "version": "2.16.0"
+                }
+              },
+              "umer.farooq67.skipq@gmail.com": {
+                "id": "umer.farooq67.skipq@gmail.com",
+                "path": "UmerFarooq67Sprint2Stack/google Topic Latency/umer.farooq67.skipq@gmail.com",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "UmerFarooq67Sprint2Stack/google Topic Latency/umer.farooq67.skipq@gmail.com/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::SNS::Subscription",
+                      "aws:cdk:cloudformation:props": {
+                        "protocol": "email",
+                        "topicArn": {
+                          "Ref": "googleTopicLatency0DF40A82"
+                        },
+                        "endpoint": "umer.farooq67.skipq@gmail.com"
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_sns.CfnSubscription",
+                      "version": "2.16.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_sns.Subscription",
+                  "version": "2.16.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_sns.Topic",
+              "version": "2.16.0"
+            }
+          },
+          "google_alarm_availability": {
+            "id": "google_alarm_availability",
+            "path": "UmerFarooq67Sprint2Stack/google_alarm_availability",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "UmerFarooq67Sprint2Stack/google_alarm_availability/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::CloudWatch::Alarm",
+                  "aws:cdk:cloudformation:props": {
+                    "comparisonOperator": "LessThanThreshold",
+                    "evaluationPeriods": 1,
+                    "alarmActions": [
+                      {
+                        "Ref": "googleTopicAvailability63A480D8"
+                      }
+                    ],
+                    "datapointsToAlarm": 1,
+                    "metrics": [
+                      {
+                        "metricStat": {
+                          "metric": {
+                            "metricName": "availability",
+                            "namespace": "UF67NameSPACE",
+                            "dimensions": [
+                              {
+                                "name": "url",
+                                "value": "www.google.com"
+                              }
+                            ]
+                          },
+                          "period": 60,
+                          "stat": "Average"
+                        },
+                        "id": "m1",
+                        "label": "Availability Metric",
+                        "returnData": true
+                      }
+                    ],
+                    "threshold": 1
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_cloudwatch.CfnAlarm",
+                  "version": "2.16.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_cloudwatch.Alarm",
+              "version": "2.16.0"
+            }
+          },
+          "google_alarm_latency": {
+            "id": "google_alarm_latency",
+            "path": "UmerFarooq67Sprint2Stack/google_alarm_latency",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "UmerFarooq67Sprint2Stack/google_alarm_latency/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::CloudWatch::Alarm",
+                  "aws:cdk:cloudformation:props": {
+                    "comparisonOperator": "GreaterThanThreshold",
+                    "evaluationPeriods": 1,
+                    "alarmActions": [
+                      {
+                        "Ref": "googleTopicLatency0DF40A82"
+                      }
+                    ],
+                    "datapointsToAlarm": 1,
+                    "metrics": [
+                      {
+                        "metricStat": {
+                          "metric": {
+                            "metricName": "latency",
+                            "namespace": "UF67NameSPACE",
+                            "dimensions": [
+                              {
+                                "name": "url",
+                                "value": "www.google.com"
+                              }
+                            ]
+                          },
+                          "period": 60,
+                          "stat": "Average"
+                        },
+                        "id": "m1",
+                        "label": "Latency Metric",
+                        "returnData": true
+                      }
+                    ],
+                    "threshold": 0.02
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_cloudwatch.CfnAlarm",
+                  "version": "2.16.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_cloudwatch.Alarm",
+              "version": "2.16.0"
+            }
+          },
+          "namal Topic Availability": {
+            "id": "namal Topic Availability",
+            "path": "UmerFarooq67Sprint2Stack/namal Topic Availability",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "UmerFarooq67Sprint2Stack/namal Topic Availability/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::SNS::Topic",
+                  "aws:cdk:cloudformation:props": {
+                    "tags": [
+                      {
+                        "key": "Cohort",
+                        "value": "Orion"
+                      },
+                      {
+                        "key": "Name",
+                        "value": "Umer67"
+                      }
+                    ]
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_sns.CfnTopic",
+                  "version": "2.16.0"
+                }
+              },
+              "umer.farooq67.skipq@gmail.com": {
+                "id": "umer.farooq67.skipq@gmail.com",
+                "path": "UmerFarooq67Sprint2Stack/namal Topic Availability/umer.farooq67.skipq@gmail.com",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "UmerFarooq67Sprint2Stack/namal Topic Availability/umer.farooq67.skipq@gmail.com/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::SNS::Subscription",
+                      "aws:cdk:cloudformation:props": {
+                        "protocol": "email",
+                        "topicArn": {
+                          "Ref": "namalTopicAvailability2D72BAE4"
+                        },
+                        "endpoint": "umer.farooq67.skipq@gmail.com"
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_sns.CfnSubscription",
+                      "version": "2.16.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_sns.Subscription",
+                  "version": "2.16.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_sns.Topic",
+              "version": "2.16.0"
+            }
+          },
+          "namal Topic Latency": {
+            "id": "namal Topic Latency",
+            "path": "UmerFarooq67Sprint2Stack/namal Topic Latency",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "UmerFarooq67Sprint2Stack/namal Topic Latency/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::SNS::Topic",
+                  "aws:cdk:cloudformation:props": {
+                    "tags": [
+                      {
+                        "key": "Cohort",
+                        "value": "Orion"
+                      },
+                      {
+                        "key": "Name",
+                        "value": "Umer67"
+                      }
+                    ]
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_sns.CfnTopic",
+                  "version": "2.16.0"
+                }
+              },
+              "umer.farooq67.skipq@gmail.com": {
+                "id": "umer.farooq67.skipq@gmail.com",
+                "path": "UmerFarooq67Sprint2Stack/namal Topic Latency/umer.farooq67.skipq@gmail.com",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "UmerFarooq67Sprint2Stack/namal Topic Latency/umer.farooq67.skipq@gmail.com/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::SNS::Subscription",
+                      "aws:cdk:cloudformation:props": {
+                        "protocol": "email",
+                        "topicArn": {
+                          "Ref": "namalTopicLatencyDAB6BC4A"
+                        },
+                        "endpoint": "umer.farooq67.skipq@gmail.com"
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_sns.CfnSubscription",
+                      "version": "2.16.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_sns.Subscription",
+                  "version": "2.16.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_sns.Topic",
+              "version": "2.16.0"
+            }
+          },
+          "namal_alarm_availability": {
+            "id": "namal_alarm_availability",
+            "path": "UmerFarooq67Sprint2Stack/namal_alarm_availability",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "UmerFarooq67Sprint2Stack/namal_alarm_availability/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::CloudWatch::Alarm",
+                  "aws:cdk:cloudformation:props": {
+                    "comparisonOperator": "LessThanThreshold",
+                    "evaluationPeriods": 1,
+                    "alarmActions": [
+                      {
+                        "Ref": "namalTopicAvailability2D72BAE4"
+                      }
+                    ],
+                    "datapointsToAlarm": 1,
+                    "metrics": [
+                      {
+                        "metricStat": {
+                          "metric": {
+                            "metricName": "availability",
+                            "namespace": "UF67NameSPACE",
+                            "dimensions": [
+                              {
+                                "name": "url",
+                                "value": "www.namal.edu.pk"
+                              }
+                            ]
+                          },
+                          "period": 60,
+                          "stat": "Average"
+                        },
+                        "id": "m1",
+                        "label": "Availability Metric",
+                        "returnData": true
+                      }
+                    ],
+                    "threshold": 1
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_cloudwatch.CfnAlarm",
+                  "version": "2.16.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_cloudwatch.Alarm",
+              "version": "2.16.0"
+            }
+          },
+          "namal_alarm_latency": {
+            "id": "namal_alarm_latency",
+            "path": "UmerFarooq67Sprint2Stack/namal_alarm_latency",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "UmerFarooq67Sprint2Stack/namal_alarm_latency/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::CloudWatch::Alarm",
+                  "aws:cdk:cloudformation:props": {
+                    "comparisonOperator": "GreaterThanThreshold",
+                    "evaluationPeriods": 1,
+                    "alarmActions": [
+                      {
+                        "Ref": "namalTopicLatencyDAB6BC4A"
+                      }
+                    ],
+                    "datapointsToAlarm": 1,
+                    "metrics": [
+                      {
+                        "metricStat": {
+                          "metric": {
+                            "metricName": "latency",
+                            "namespace": "UF67NameSPACE",
+                            "dimensions": [
+                              {
+                                "name": "url",
+                                "value": "www.namal.edu.pk"
+                              }
+                            ]
+                          },
+                          "period": 60,
+                          "stat": "Average"
+                        },
+                        "id": "m1",
+                        "label": "Latency Metric",
+                        "returnData": true
+                      }
+                    ],
+                    "threshold": 0.02
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_cloudwatch.CfnAlarm",
+                  "version": "2.16.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_cloudwatch.Alarm",
               "version": "2.16.0"
             }
           },
