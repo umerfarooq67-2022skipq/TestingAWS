@@ -1,0 +1,11 @@
+{    
+    "WEB_URLS" : [
+        "www.skipq.org", 
+        "www.google.com", 
+        "www.namal.edu.pk"
+        ],
+    "URL_METRIC_AVAILABILITY" : "availability",
+    "URL_METRIC_LATENCY" : "latency",
+    "THRESHOLD_AVAILABILITY" : 1,
+    "THRESHOLD_LATENCY" : 0.02
+}
